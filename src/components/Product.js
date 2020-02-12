@@ -7,22 +7,33 @@ import PropTypes from 'prop-types';
 export default class Product extends Component {
 
     render () {
-        const id  =  this.props.product && this.props.product.id;
-        const img  =  this.props.product && this.props.product.img;
-        const title = this.props.product && this.props.product.title; 
-        const price = this.props.product && this.props.product.price;
-        const inCart = this.props.product && this.props.product.inCart;
+        // const {id, title, img, inCart, prince} = this.props.product.{id, title, img, inCart, price}
+        const id = this.props.product.id;
+        const title = this.props.product.title;
+        const img = this.props.product.img;
+        const inCart = this.props.product.inCart;
+        const price = this.props.product.price;
+        // debugger
         return (
             <ProductWrapper className = "con-9 mx-auto col-md-6 col-lg-3 my-3">
                <div className = "card">
-                    <div className = "img-container p-5" onClick = {console.log('clicked me on the image container')}>
+                   <ProductConsumer>
+                       {value =>(
+                       <div className = "img-container p-5" onClick = {()=>
+                            value.handleDetail(id)
+                        }>
                         <Link to="/details">
                             <img src = { img } alt = "product" className = "card-img-top"></img>
                         </Link> 
-                        <button className = "cart-btn" disabled = { inCart? true : false } onClick = {() => {console.log('added to the cart');}}>
+                        <button className = "cart-btn" disabled = { inCart? true : false } onClick = {() => {
+                            value.addToCart(id);
+                            value.openModal(id);
+                        }}>
         {inCart?( <p className="text-capitalize mb-0" disabled>{" "} inCart</p>):(<i className = "fas fa-cart-plus"/>)}
                         </button>
-                    </div>
+                    </div>) }
+                    
+                    </ProductConsumer>
                     {/* { card footer } */}
                     <div className = "card-footer d-flex justify-content-between">
                         <p className = "align-self-center mb-0">

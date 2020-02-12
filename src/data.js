@@ -1,7 +1,7 @@
 export const storeProducts =[
     {
         id: 1,
-        title: "Gooqle Pixel",
+        title: "Google Pixel",
         img: "img/1.png",
         price: 10,
         company: "GOOGLE",
@@ -56,7 +56,7 @@ export const storeProducts =[
 ];
 
 export const detailProduct = {
-    id: 1,
+    id: 6,
     title: "Google Pixel",
     img: "img/1.png",
     price: 10,
